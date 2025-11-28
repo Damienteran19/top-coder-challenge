@@ -1,0 +1,24 @@
+
+FEATURE ENGINEERING SUMMARY
+==========================
+
+Total Features: 36
+Original: 4
+Engineered: 32
+
+Top 3 Features (RF Importance):
+1. reimb_zscore (0.9996)
+2. anomaly_reimb (0.0002)
+3. miles_x_duration (0.0000)
+
+Key Engineered Features:
+- reimb_per_mile, reimb_per_day
+- receipts_per_day, high_receipts
+- interaction terms, binned categories
+- anomaly detection
+
+Next Steps:
+- Run 04_baseline_models.py
+- Compare MAE: baseline vs engineered
+
+Generated: 2025-11-20 19:15

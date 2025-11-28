@@ -1,0 +1,24 @@
+
+LEGACY REIMBURSEMENT - EDA SUMMARY
+==================================
+
+Dataset: 750 training samples
+Features: trip_duration_days, miles_traveled, total_receipts_amount
+Target: reimbursement
+
+Key Insights:
+-------------
+1. Strongest predictor: total_receipts_amount (r = 0.695)
+2. Data range:
+   - Miles: 5.0 to 1204.0
+   - Receipts: $1.42 to $2503.46
+   - Duration: 1 to 14 days
+3. Potential non-linearity? Check scatter plots for thresholds.
+
+Next Steps:
+-----------
+- Read PRD.md & INTERVIEWS.md for business rules
+- Engineer features: rate per mile, per diem flags, receipt ratios
+- Look for approval thresholds (e.g $500 cap?)
+
+Generated on: 2025-11-20 19:15
