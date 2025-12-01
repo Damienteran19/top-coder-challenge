@@ -99,9 +99,9 @@ print(f"Features created: {train_fe.shape[1] - 4} new + 4 original = {train_fe.s
 # ------------------------------------------------------------------
 # 3. Save Feature Sets
 # ------------------------------------------------------------------
-train_fe.to_csv(FEAT / "train_features.csv", index=False)
-test_fe.to_csv(FEAT / "test_features.csv", index=False)
-print(f"Feature CSVs saved to data/features/")
+train_fe.to_csv(PROC / "train_features.csv", index=False)
+test_fe.to_csv(PROC / "test_features.csv", index=False)
+print(f"Feature CSVs saved to data/processed/")
 
 # ------------------------------------------------------------------
 # 4. Feature Importance Preview (Random Forest)

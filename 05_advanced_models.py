@@ -502,12 +502,12 @@ def main():
     
     # Use numeric features only
     numeric_cols = train_df.select_dtypes(include=[np.number]).columns.tolist()
-    numeric_cols = [col for col in numeric_cols if col != 'output']
+    numeric_cols = [col for col in numeric_cols if col != 'reimbursement']
     
     X_train = train_df[numeric_cols]
-    y_train = train_df['output']
+    y_train = train_df['reimbursement']
     X_test = test_df[numeric_cols]
-    y_test = test_df['output']
+    y_test = test_df['reimbursement']
     
     print(f"✓ Train: {X_train.shape}, Test: {X_test.shape}")
     

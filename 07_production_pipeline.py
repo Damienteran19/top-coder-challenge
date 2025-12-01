@@ -300,7 +300,7 @@ def validate_on_test_set():
     # Calculate metrics
     from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
     
-    y_true = test_df['output'].values
+    y_true = test_df['reimbursement'].values
     diff = np.abs(y_true - predictions)
     
     exact_matches = np.sum(diff <= 0.01)

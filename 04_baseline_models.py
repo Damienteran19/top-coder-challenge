@@ -10,12 +10,22 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+from pathlib import Path
 from sklearn.linear_model import LinearRegression, Ridge, Lasso
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from sklearn.model_selection import cross_val_score
 import joblib
 import warnings
 warnings.filterwarnings('ignore')
+
+# ============================================================================
+# SETUP
+# ============================================================================
+ROOT = Path(__file__).parent
+MODEL = ROOT / "models"
+SAVED = MODEL / "saved"
+MODEL.mkdir(exist_ok=True)
+SAVED.mkdir(exist_ok=True)
 
 # ============================================================================
 # EVALUATION METRICS
@@ -131,7 +141,7 @@ def baseline_business_rules(X):
     
     Hypothesis: Reimbursement = Receipts + (Miles * IRS_rate) + (Days * per_diem)
     """
-    IRS_RATE = 0.655  # 2024 standard mileage rate
+    IRS_RATE = 0.58   # Interviewed standard mileage rate (for <100 miles)
     PER_DIEM = 100.0  # Assumed per diem
     
     predictions = (X['total_receipts_amount'] + 
@@ -399,10 +409,10 @@ def main():
     test_df = pd.read_csv('data/processed/test_features.csv')
     
     # Separate features and target
-    X_train = train_df.drop('output', axis=1)
-    y_train = train_df['output']
-    X_test = test_df.drop('output', axis=1)
-    y_test = test_df['output']
+    X_train = train_df.drop('reimbursement', axis=1)
+    y_train = train_df['reimbursement']
+    X_test = test_df.drop('reimbursement', axis=1)
+    y_test = test_df['reimbursement']
     
     print(f"✓ Train: {X_train.shape}, Test: {X_test.shape}")
     

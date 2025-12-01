@@ -1,0 +1,11 @@
+Best Model: Stacking Ensemble
+Test MAE: $45.90
+
+Full Results:
+                       model   test_mae  test_rmse  test_exact_pct  test_close_pct   test_r2
+0        Tuned Random Forest  46.337140  48.983642             0.0             0.0  0.988522
+1              Tuned Xgboost  47.653746  50.502515             0.0             0.4  0.987800
+2    Tuned Gradient Boosting  46.511259  48.978188             0.0             0.0  0.988525
+3            Voting Ensemble  46.759611  49.344423             0.0             0.0  0.988353
+4          Stacking Ensemble  45.900113  48.588357             0.0             0.0  0.988707
+5  Weighted Average Ensemble  46.799448  49.383916             0.0             0.0  0.988334
