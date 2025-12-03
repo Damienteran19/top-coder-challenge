@@ -45,48 +45,58 @@ def engineer_features(df):
     
     # --- Mileage Features ---
     df['miles_per_day'] = df['miles_traveled'] / df['trip_duration_days'].replace(0, 1)
-    df['high_mileage'] = (df['miles_traveled'] > 300).astype(int)
-    df['long_trip'] = (df['trip_duration_days'] > 7).astype(int)
     
     # --- Receipt Features ---
     df['receipts_per_day'] = df['total_receipts_amount'] / df['trip_duration_days'].replace(0, 1)
-    df['high_receipts'] = (df['total_receipts_amount'] > 800).astype(int)
     df['receipts_to_miles_ratio'] = df['total_receipts_amount'] / df['miles_traveled'].replace(0, 1)
     
     # --- Rate-Based Features ---
-    df['reimb_per_mile'] = df['reimbursement'] / df['miles_traveled'].replace(0, 1)
-    df['reimb_per_day'] = df['reimbursement'] / df['trip_duration_days'].replace(0, 1)
-    df['reimb_per_receipt'] = df['reimbursement'] / df['total_receipts_amount'].replace(0, 1)
+    #df['reimb_per_mile'] = df['reimbursement'] / df['miles_traveled'].replace(0, 1)
+    #df['reimb_per_day'] = df['reimbursement'] / df['trip_duration_days'].replace(0, 1)
+    #df['reimb_per_receipt'] = df['reimbursement'] / df['total_receipts_amount'].replace(0, 1)
     
     # --- Efficiency & Compliance ---
-    df['mileage_efficiency'] = df['miles_traveled'] / df['reimbursement'].replace(0, 1)
-    df['receipt_efficiency'] = df['total_receipts_amount'] / df['reimbursement'].replace(0, 1)
+    #df['mileage_efficiency'] = df['miles_traveled'] / df['reimbursement'].replace(0, 1)
+    #df['receipt_efficiency'] = df['total_receipts_amount'] / df['reimbursement'].replace(0, 1)
     
     # --- Threshold & Cap Features ---
-    df['near_receipt_cap'] = ((df['total_receipts_amount'] > 700) & (df['total_receipts_amount'] <= 800)).astype(int)
-    df['over_receipt_cap'] = (df['total_receipts_amount'] > 800).astype(int)
+    df['near_receipt_cap'] = ((df['total_receipts_amount'] > 600) & (df['total_receipts_amount'] <= 800)).astype(int)
+    df['high_receipts'] = (df['total_receipts_amount'] > 800).astype(int)
+    df['low_receipts'] = (df['total_receipts_amount'] < 50).astype(int)
+    df['near_receipt_bottom'] = ((df['total_receipts_amount'] < 80) & (df['total_receipts_amount'] >= 50)).astype(int)
+
     df['under_100_miles'] = (df['miles_traveled'] < 100).astype(int)
+    df['high_mileage'] = (df['miles_traveled'] > 300).astype(int)
+
+    df['long_trip'] = (df['trip_duration_days'] >= 7).astype(int)
+    df['short_trip'] = (df['trip_duration_days'] < 4).astype(int)
     
     # --- Interaction Features ---
     df['miles_x_duration'] = df['miles_traveled'] * df['trip_duration_days']
     df['receipts_x_duration'] = df['total_receipts_amount'] * df['trip_duration_days']
     df['miles_x_receipts'] = df['miles_traveled'] * df['total_receipts_amount']
-    
+    df['miles_x_(receipts_per_day)'] = df['miles_traveled'] * df['receipts_per_day']
+
     # --- Binned Features ---
-    df['miles_bin'] = pd.cut(df['miles_traveled'], bins=[0, 100, 300, 500, 1000], labels=['<100', '100-300', '300-500', '>500'])
-    df['duration_bin'] = pd.cut(df['trip_duration_days'], bins=[0, 3, 7, 14], labels=['Short', 'Medium', 'Long'])
-    df['receipts_bin'] = pd.cut(df['total_receipts_amount'], bins=[0, 300, 800, 1500, 3000], labels=['Low', 'Medium', 'High', 'VeryHigh'])
+    #df['miles_bin'] = pd.cut(df['miles_traveled'], bins=[0, 100, 300, 500, 1000], labels=['<100', '100-300', '300-500', '>500'])
+    #df['duration_bin'] = pd.cut(df['trip_duration_days'], bins=[0, 3, 7, 14], labels=['Short', 'Medium', 'Long'])
+    #df['receipts_bin'] = pd.cut(df['total_receipts_amount'], bins=[0, 300, 800, 1500, 3000], labels=['Low', 'Medium', 'High', 'VeryHigh'])
     
     # One-hot encode bins
-    df = pd.get_dummies(df, columns=['miles_bin', 'duration_bin', 'receipts_bin'], prefix=['miles', 'dur', 'rec'])
+    #df = pd.get_dummies(df, columns=['miles_bin', 'duration_bin', 'receipts_bin'], prefix=['miles', 'dur', 'rec'])
     
     # --- Statistical Features (from distribution) ---
-    df['reimb_zscore'] = (df['reimbursement'] - df['reimbursement'].mean()) / df['reimbursement'].std()
+    #df['reimb_zscore'] = (df['reimbursement'] - df['reimbursement'].mean()) / df['reimbursement'].std()
     df['miles_zscore'] = (df['miles_traveled'] - df['miles_traveled'].mean()) / df['miles_traveled'].std()
-    
+    df['receipts_zscore'] = (df['total_receipts_amount'] - df['total_receipts_amount'].mean()) / df['total_receipts_amount'].std()
+    df['duration_zscore'] = (df['trip_duration_days'] - df['trip_duration_days'].mean()) / df['trip_duration_days'].std()
+
+
     # --- Anomaly Flags ---
     df['anomaly_miles'] = ((df['miles_zscore'] > 2) | (df['miles_zscore'] < -2)).astype(int)
-    df['anomaly_reimb'] = ((df['reimb_zscore'] > 2) | (df['reimb_zscore'] < -2)).astype(int)
+    df['anomaly_receipts'] = ((df['receipts_zscore'] > 2) | (df['receipts_zscore'] < -2)).astype(int)
+    df['anomaly_duration'] = ((df['duration_zscore'] > 2) | (df['duration_zscore'] < -2)).astype(int)
+    #df['anomaly_reimb'] = ((df['reimb_zscore'] > 2) | (df['reimb_zscore'] < -2)).astype(int)
     
     return df
 
