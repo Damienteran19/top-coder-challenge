@@ -67,7 +67,7 @@ high accuracy.
 
 ---
 Report Generated: {date}
-Team: [Your Team Names]
+Team: [Your Damien Teran, Sidney Land, Yasmine Scotlands]
 """
     
     return summary.format(date=datetime.now().strftime("%B %d, %Y"))
@@ -111,7 +111,7 @@ def generate_technical_report(results):
 ## Legacy Reimbursement System Reverse Engineering
 
 **Project:** CSCI/DASC 6020 Machine Learning Team Project
-**Team:** [Your Team Names]
+**Team:** [Your Damien Teran, Sidney Land, Yasmine Scotlands]
 **Date:** {datetime.now().strftime("%B %d, %Y")}
 
 ---
