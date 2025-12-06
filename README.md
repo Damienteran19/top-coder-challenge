@@ -1,90 +1,97 @@
-# Top Coder Challenge: Black Box Legacy Reimbursement System
+Legacy Reimbursement System – Student Project
+============================================
 
-**Reverse-engineer a 60-year-old travel reimbursement system using only historical data and employee interviews.**
+CSCI/DASC 6020 – Machine Learning Team Project
 
-ACME Corp's legacy reimbursement system has been running for 60 years. No one knows how it works, but it's still used daily.
+This repository contains my version of the legacy travel reimbursement
+reverse‑engineering project. The goal is to predict reimbursement amounts
+from three input variables:
 
-8090 has built them a new system, but ACME Corp is confused by the differences in results. Your mission is to figure out the original business logic so we can explain why ours is different and better.
+- `trip_duration_days`
+- `miles_traveled`
+- `total_receipts_amount`
 
-Your job: create a perfect replica of the legacy system by reverse-engineering its behavior from 1,000 historical input/output examples and employee interviews.
+The structure and file naming follow the session‑style layout used by my
+teammates, but the code is intentionally a bit lighter and easier to follow.
 
-## What You Have
+Project Layout
+--------------
 
-### Input Parameters
-
-The system takes three inputs:
-
-- `trip_duration_days` - Number of days spent traveling (integer)
-- `miles_traveled` - Total miles traveled (integer)
-- `total_receipts_amount` - Total dollar amount of receipts (float)
-
-## Documentation
-
-- A PRD (Product Requirements Document)
-- Employee interviews with system hints
-
-### Output
-
-- Single numeric reimbursement amount (float, rounded to 2 decimal places)
-
-### Historical Data
-
-- `public_cases.json` - 1,000 historical input/output examples
-
-## Getting Started
-
-1. **Analyze the data**: 
-   - Look at `public_cases.json` to understand patterns
-   - Look at `PRD.md` to understand the business problem
-   - Look at `INTERVIEWS.md` to understand the business logic
-2. **Create your implementation**:
-   - Copy `run.sh.template` to `run.sh`
-   - Implement your calculation logic
-   - Make sure it outputs just the reimbursement amount
-3. **Test your solution**: 
-   - Run `./eval.sh` to see how you're doing
-   - Use the feedback to improve your algorithm
-4. **Submit**:
-   - Run `./generate_results.sh` to get your final results.
-   - Add `arjun-krishna1` to your repo.
-   - Complete [the submission form](https://forms.gle/sKFBV2sFo2ADMcRt8).
-
-## Implementation Requirements
-
-Your `run.sh` script must:
-
-- Take exactly 3 parameters: `trip_duration_days`, `miles_traveled`, `total_receipts_amount`
-- Output a single number (the reimbursement amount)
-- Run in under 5 seconds per test case
-- Work without external dependencies (no network calls, databases, etc.)
-
-Example:
-
-```bash
-./run.sh 5 250 150.75
-# Should output something like: 487.25
+```text
+project/
+├── data/
+│   ├── raw/
+│   │   └── public_cases.json
+│   └── processed/
+│       ├── train_data.csv
+│       ├── test_data.csv
+│       ├── train_features.csv
+│       └── test_features.csv
+├── models/
+│   └── saved/
+│       └── final_model.joblib
+├── notebooks/
+│   └── 01_eda.ipynb
+├── reports/
+│   └── final_report_outline.md
+├── results/
+│   └── *.csv / *.png
+├── 01_project_setup.py
+├── 02_deep_eda.py
+├── 03_feature_engineering.py
+├── 04_baseline_models.py
+├── 05_advanced_models.py
+├── 06_tuning_and_ensembles.py
+├── 07_production_pipeline.py
+├── 08_generate_final_report.py
+├── predict.py
+├── run.sh
+└── README.md
 ```
 
-## Evaluation
+Quick Start
+-----------
 
-Run `./eval.sh` to test your solution against all 1,000 cases. The script will show:
+1. Place `public_cases.json` in `data/raw/`.
+2. Create and activate a virtual environment.
+3. Install requirements:
 
-- **Exact matches**: Cases within ±$0.01 of the expected output
-- **Close matches**: Cases within ±$1.00 of the expected output
-- **Average error**: Mean absolute difference from expected outputs
-- **Score**: Lower is better (combines accuracy and precision)
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-Your submission will be tested against `private_cases.json` which does not include the outputs.
+4. Run the scripts in order (you can always re‑run them after you make edits):
 
-## Submission
+   ```bash
+   python 01_project_setup.py
+   python 02_deep_eda.py
+   python 03_feature_engineering.py
+   python 04_baseline_models.py
+   python 05_advanced_models.py
+   python 06_tuning_and_ensembles.py
+   python 07_production_pipeline.py
+   ```
 
-When you're ready to submit:
+5. Once `07_production_pipeline.py` has trained and saved `models/saved/final_model.joblib`,
+   you can use the command‑line prediction interface:
 
-1. Push your solution to a GitHub repository
-2. Add `arjun-krishna1` to your repository
-3. Submit via the [submission form](https://forms.gle/sKFBV2sFo2ADMcRt8).
-4. When you submit the form you will submit your `private_results.txt` which will be used for your final score.
+   ```bash
+   ./run.sh 3 250 180.50
+   ```
 
----
+6. To generate a text version of the final report outline:
 
-**Good luck and Bon Voyage!**
+   ```bash
+   python 08_generate_final_report.py
+   ```
+
+Notes
+-----
+
+- The scripts are written to be readable and fairly modest in size. They are
+  not heavily optimized or auto‑generated.
+- You can tweak feature engineering, model choices, and hyperparameters in
+  `03_feature_engineering.py`, `05_advanced_models.py`, and
+  `06_tuning_and_ensembles.py` and then re‑run the pipeline.
+- The final `predict.py` and `run.sh` are designed to be compatible with the
+  instructor’s `eval.sh` and `generate_results.sh` scripts.
