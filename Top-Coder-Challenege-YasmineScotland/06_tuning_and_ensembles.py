@@ -16,7 +16,7 @@ import joblib
 import numpy as np
 import pandas as pd
 from sklearn.ensemble import GradientBoostingRegressor, RandomForestRegressor
-from sklearn.metrics import mean_absolute_error, mean_squared_error
+from sklearn.metrics import mean_absolute_error, root_mean_squared_error
 from sklearn.model_selection import train_test_split
 
 ROOT = Path(__file__).parent
@@ -31,7 +31,7 @@ def project_metrics(y_true, y_pred):
     diff = np.abs(y_true - y_pred)
     return {
         "mae": mean_absolute_error(y_true, y_pred),
-        "rmse": mean_squared_error(y_true, y_pred, squared=False),
+        "rmse": root_mean_squared_error(y_true, y_pred),
         "exact_pct": np.mean(diff <= 0.01) * 100,
         "close_pct": np.mean(diff <= 1.00) * 100,
     }

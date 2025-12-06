@@ -30,11 +30,11 @@ using machine learning based only on:
 - A PRD with partial policy descriptions  
 
 **Project Goal:**  
-Replicate the legacy system’s reimbursement output with high accuracy, with success 
+Replicate the legacy system's reimbursement output with high accuracy, with success 
 defined as:
 
-- Exact match: within ±$0.01  
-- Close match: within ±$1.00  
+- Exact match: within +/-$0.01  
+- Close match: within +/-$1.00  
 
 This project integrates data analysis, supervised learning, business understanding, 
 model interpretability, and production-ready engineering.
@@ -68,9 +68,9 @@ Three numeric inputs:
 We conducted EDA using histograms, correlation heatmaps, and scatterplots.
 
 ### Key Findings
-- **Trip duration** ranged 0–30 days, mostly short trips.
-- **Miles traveled** ranged 0–3,000; many trips between 100–500 miles.
-- **Receipts** ranged $0–$3,000 and were strongly right-skewed.
+- **Trip duration** ranged 0-30 days, mostly short trips.
+- **Miles traveled** ranged 0-3,000; many trips between 100-500 miles.
+- **Receipts** ranged $0-$3,000 and were strongly right-skewed.
 
 ### Correlations
 - Receipts had **strongest correlation** with reimbursement.
@@ -99,14 +99,14 @@ We engineered features to capture both business rules and nonlinear effects:
 Used to reduce skewness in receipts and mileage.
 
 ### Binary Thresholds
-- `is_week_plus` (≥7 days)
+- `is_week_plus` (>=7 days)
 - `is_long_miles` (>500 miles)
 
 ### Rationale
 Employee interviews indicated:
 - Per-diem behavior changed around **7 days**
 - Mileage rules switched above **500 miles**
-- Receipts were “reimbursed first,” pointing to the need for strong receipt features
+- Receipts were "reimbursed first," pointing to the need for strong receipt features
 
 These engineered features significantly improved model performance.
 
@@ -169,10 +169,10 @@ but with caps or conditions.
 ### Mileage Has Tiered Logic
 Model splits show strong behavior change near **500 miles**.  
 Matches interview statements:  
-> “Trips over 500 miles triggered a different calculation.”
+> "Trips over 500 miles triggered a different calculation."
 
 ### Trip Duration
-Trips ≥ 7 days formed a separate decision path:  
+Trips >= 7 days formed a separate decision path:  
 Likely related to per-diem changes or weekly travel rules.
 
 ### Complex Interaction Effects

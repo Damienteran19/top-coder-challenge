@@ -13,7 +13,7 @@ import sys
 
 from pathlib import Path
 
-from 07_production_pipeline import ReimbursementPredictor
+from _07_production_pipeline import ReimbursementPredictor
 
 
 def main(argv) -> None:
