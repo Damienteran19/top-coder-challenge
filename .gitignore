@@ -26,3 +26,6 @@ models/saved/*.pkl
 # OS
 .DS_Store
 Thumbs.db
+
+# Python Virtual Environments
+venv*
