@@ -21,6 +21,7 @@ RESULTS.mkdir(exist_ok=True)
 
 
 def main() -> None:
+    # Load train_data.csv
     train_path = PROC / "train_data.csv"
     if not train_path.exists():
         raise FileNotFoundError("Run 01_project_setup.py first to create train_data.csv")

@@ -14,6 +14,7 @@ import pandas as pd
 ROOT = Path(__file__).parent
 PROC = ROOT / "data" / "processed"
 
+# List of Features
 def add_features(df: pd.DataFrame) -> pd.DataFrame:
     df = df.copy()
     days = df["trip_duration_days"].replace(0, 1)
