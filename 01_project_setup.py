@@ -12,12 +12,13 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
-
+# Filepath Constants
 ROOT = Path(__file__).parent
 RAW = ROOT / "data" / "raw"
 PROC = ROOT / "data" / "processed"
 RESULTS = ROOT / "results"
 
+# Ensure PROC and RESULTS path exists
 PROC.mkdir(parents=True, exist_ok=True)
 RESULTS.mkdir(parents=True, exist_ok=True)
 
@@ -70,6 +71,7 @@ def main() -> None:
         shuffle=True,
     )
 
+    # Save splits to processed data
     train_df.to_csv(PROC / "train_data.csv", index=False)
     test_df.to_csv(PROC / "test_data.csv", index=False)
 
@@ -89,6 +91,6 @@ def main() -> None:
     plt.close(fig)
     print("Saved initial histograms to results/01_initial_histograms.png")
 
-
+# Main Execution
 if __name__ == "__main__":
     main()

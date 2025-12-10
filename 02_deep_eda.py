@@ -12,11 +12,12 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 
-
+# Filepath Constants
 ROOT = Path(__file__).parent
 PROC = ROOT / "data" / "processed"
 RESULTS = ROOT / "results"
 
+# Ensure RESULTS path exists
 RESULTS.mkdir(exist_ok=True)
 
 
@@ -55,6 +56,6 @@ def main() -> None:
 
     print("EDA plots saved in results/")
 
-
+# Main Execution
 if __name__ == "__main__":
     main()

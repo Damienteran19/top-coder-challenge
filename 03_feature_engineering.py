@@ -10,7 +10,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-
+# Filepath Constants
 ROOT = Path(__file__).parent
 PROC = ROOT / "data" / "processed"
 
@@ -30,23 +30,28 @@ def add_features(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def main() -> None:
+    # Filepaths
     train_path = PROC / "train_data.csv"
     test_path = PROC / "test_data.csv"
     if not train_path.exists() or not test_path.exists():
         raise FileNotFoundError("Run 01_project_setup.py first to create train/test CSVs")
 
+    # Load raw features
     train = pd.read_csv(train_path)
     test = pd.read_csv(test_path)
 
+    # Add derived features
     train_fe = add_features(train)
     test_fe = add_features(test)
 
+    # Save derived features
     train_fe.to_csv(PROC / "train_features.csv", index=False)
     test_fe.to_csv(PROC / "test_features.csv", index=False)
 
+    # Display results
     print("Saved train_features.csv and test_features.csv in data/processed/")
     print("Feature columns:", [c for c in train_fe.columns if c != "reimbursement"])
 
-
+# Main Execution
 if __name__ == "__main__":
     main()
