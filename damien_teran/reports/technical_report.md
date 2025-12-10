@@ -3,7 +3,7 @@
 ## Legacy Reimbursement System Reverse Engineering
 
 **Project:** CSCI/DASC 6020 Machine Learning Team Project
-**Team:** [Your Team Names]
+**Team:** Damien Teran, Sidney Land, Yasmine Scotland
 **Date:** November 20, 2025
 
 ---
@@ -49,8 +49,8 @@ The legacy system accepts three inputs:
 - Single reimbursement amount (dollars, 2 decimal places)
 
 ### Success Criteria
-- Exact matches: Predictions within ±$0.01
-- Close matches: Predictions within ±$1.00
+- Exact matches: Predictions within ï¿½$0.01
+- Close matches: Predictions within ï¿½$1.00
 - Minimize Mean Absolute Error (MAE)
 
 ---
@@ -106,9 +106,9 @@ We created 0 derived features including:
    - Estimated per diem ($150/day)
 
 3. **Interaction Features**
-   - Days × Miles
-   - Days × Receipts
-   - Miles × Receipts
+   - Days ï¿½ Miles
+   - Days ï¿½ Receipts
+   - Miles ï¿½ Receipts
 
 4. **Polynomial Features**
    - Squared terms

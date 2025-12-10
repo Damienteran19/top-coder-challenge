@@ -11,8 +11,8 @@ high accuracy.
 ### Key Achievements
 - Analyzed 1,000 historical reimbursement cases
 - Developed and compared 10+ machine learning models
-- Achieved XX% exact match rate (±$0.01)
-- Achieved XX% close match rate (±$1.00)
+- Achieved XX% exact match rate (ï¿½$0.01)
+- Achieved XX% close match rate (ï¿½$1.00)
 - Mean prediction error: $XX.XX
 
 ### Business Impact
@@ -45,4 +45,4 @@ high accuracy.
 
 ---
 Report Generated: November 20, 2025
-Team: [Your Team Names]
+Team: Damien Teran, Sidney Land, Yasmine Scotland
