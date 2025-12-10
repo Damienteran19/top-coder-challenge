@@ -201,7 +201,7 @@ A modern system must explicitly define fairness criteria.
 
 This project successfully reverse-engineered ACME’s undocumented reimbursement system. Using EDA, feature engineering, and advanced modeling:
 
-- We achieved **\~78% close-match accuracy**
+- We achieved **\~1.6% close-match accuracy**
 - We reproduced core legacy business rules
 - We delivered actionable insights for policy modernization
 - We created a deployable prediction model (`predict.py`) to support transition
