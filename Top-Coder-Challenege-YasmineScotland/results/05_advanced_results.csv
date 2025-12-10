@@ -1,3 +1,0 @@
-model,mae,rmse,exact_pct,close_pct
-random_forest,70.99908160000022,107.15357563845022,0.0,1.6
-gradient_boosting,72.85782678637267,112.10754949463772,0.0,1.2
