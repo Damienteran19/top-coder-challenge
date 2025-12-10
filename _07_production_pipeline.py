@@ -10,14 +10,13 @@ import joblib
 import numpy as np
 import pandas as pd
 
-# Adjust this path if needed
+# Filepath Constants
 ROOT = Path(__file__).parent
 MODEL_PATH = ROOT / "models" / "saved" / "final_model.joblib"
 
-
+#Helper class to load the final bundled model and make predictions.
 class ReimbursementPredictor:
-    """Helper class to load the final bundled model and make predictions."""
-
+    # Load final model and ensure proper pipeline usage
     def __init__(self, model_path=MODEL_PATH):
         self.model_path = Path(model_path)
 
@@ -35,10 +34,8 @@ class ReimbursementPredictor:
         self.gb_model = bundle["gb_model"]             # GradientBoosting model
         self.rf_model = bundle["rf_model"]             # RandomForest model
 
+    # Recreate **exactly** the engineered features from Session 3.
     def _make_feature_row(self, days, miles, receipts):
-        """
-        Recreate **exactly** the engineered features from Session 3.
-        """
         days_safe = days if days > 0 else 1.0
 
         data = {
@@ -58,10 +55,8 @@ class ReimbursementPredictor:
         df = pd.DataFrame([data])
         return df[self.feature_cols]   # ensures correct column order
 
+    # Make a single prediction and return a rounded reimbursement amount.
     def predict_one(self, days, miles, receipts):
-        """
-        Make a single prediction and return a rounded reimbursement amount.
-        """
         X = self._make_feature_row(days, miles, receipts)
 
         if self.type == "gb_tuned":
@@ -81,7 +76,7 @@ class ReimbursementPredictor:
         return pred
 
 
-# Small check to confirm everything works
+# Small check to confirm everything works on three test cases
 def quick_self_test():
     predictor = ReimbursementPredictor()
     cases = [
@@ -94,6 +89,6 @@ def quick_self_test():
         out = predictor.predict_one(d, m, r)
         print(f"Input: days={d}, miles={m}, receipts={r:.2f} -> {out:.2f}")
 
-
+# Main Execution
 if __name__ == "__main__":
     quick_self_test()

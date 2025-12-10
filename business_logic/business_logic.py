@@ -3,10 +3,10 @@
 Command‑line prediction entry point.
 
 Usage:
-    ./predict.py <trip_duration_days> <miles_traveled> <total_receipts_amount>
+    ./business_logic.py <trip_duration_days> <miles_traveled> <total_receipts_amount>
 
-This script is designed to be called by `run.sh` and by the instructor's
-evaluation scripts. It simply parses the three inputs, loads the production
+This script is designed to be called by `run_business_logic.sh` and by the `eval_business_logic.sh`
+evaluation script. It simply parses the three inputs, runs business logic-based
 predictor, and prints a single reimbursement value.
 """
 import sys
@@ -72,6 +72,6 @@ def main(argv) -> None:
     # Ensure exactly two decimals
     print(f"{reimburse:.2f}")
 
-
+# Main Execution
 if __name__ == "__main__":
     main(sys.argv)

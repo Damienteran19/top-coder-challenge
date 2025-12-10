@@ -1,19 +1,19 @@
-"""
-Session 8 – Final report 
-
-"""
+# Session 8 – Final report 
 
 from pathlib import Path
 from datetime import datetime
 
+# Filepath Constants
 ROOT = Path(__file__).parent
 REPORTS = ROOT / "reports"
 REPORTS.mkdir(exist_ok=True)
 
 def main():
+    # Get current time
     today = datetime.now().strftime("%B %d, %Y")
+    # Get report save path
     report_path = REPORTS / "final_report.md"
-
+    # Report's content
     content = f"""
 
 
@@ -233,10 +233,10 @@ to modernize reimbursement policies with confidence.
 
 *End of Report*
 """
-
+    # Save report to report_path
     report_path.write_text(content)
     print(f"Final report written to: {report_path}")
 
-
+# Main Execution
 if __name__ == "__main__":
     main()
