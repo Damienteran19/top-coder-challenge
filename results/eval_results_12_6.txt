@@ -1,0 +1,30 @@
+📈 Results Summary:
+  Total test cases: 1000
+  Successful runs: 1000
+  Exact matches (±$0.01): 0 (0%)
+  Close matches (±$1.00): 16 (1.6%)
+  Average error: $48.11
+  Maximum error: $984.88
+
+🎯 Your Score: 4911.00 (lower is better)
+
+📚 Keep analyzing the patterns in the interviews and test cases.
+
+💡 Tips for improvement:
+  Check these high-error cases:
+    Case 996: 1 days, 1082 miles, $1809.49 receipts
+      Expected: $446.94, Got: $1431.82, Error: $984.88
+    Case 152: 4 days, 69 miles, $2321.49 receipts
+      Expected: $322.00, Got: $1058.73, Error: $736.73
+    Case 711: 5 days, 516 miles, $1878.49 receipts
+      Expected: $669.85, Got: $1288.90, Error: $619.05
+    Case 548: 8 days, 482 miles, $1411.49 receipts
+      Expected: $631.81, Got: $1057.89, Error: $426.08
+    Case 115: 5 days, 195.73 miles, $1228.49 receipts
+      Expected: $511.23, Got: $910.30, Error: $399.07
+
+📝 Next steps:
+  1. Fix any script errors shown above
+  2. Ensure your run.sh outputs only a number
+  3. Analyze the patterns in the interviews and public cases
+  4. Test edge cases around trip length and receipt amounts
