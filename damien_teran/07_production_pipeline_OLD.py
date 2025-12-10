@@ -148,7 +148,7 @@ class ReimbursementPredictor:
         """Load the trained model"""
         if Path(self.model_path).exists():
             self.model = joblib.load(self.model_path)
-            print(f"✓ Model loaded from {self.model_path}")
+            print(f"[OK] Model loaded from {self.model_path}")
             
             # Load feature names if available
             feature_names_path = 'data/processed/feature_names.txt'
@@ -277,7 +277,7 @@ def test_production_pipeline():
             print(f"{days:6d} {miles:6d} ${receipts:9.2f} {'ERROR':>12} {str(e)}")
     
     print("-" * 80)
-    print("✓ Production pipeline tested successfully")
+    print("[OK] Production pipeline tested successfully")
 
 def validate_on_test_set():
     """
@@ -322,7 +322,7 @@ def validate_on_test_set():
     results_df['error'] = diff
     results_df.to_csv('results/production_predictions.csv', index=False)
     
-    print(f"\n✓ Predictions saved to results/production_predictions.csv")
+    print(f"\n[OK] Predictions saved to results/production_predictions.csv")
 
 def benchmark_performance():
     """
@@ -348,7 +348,7 @@ def benchmark_performance():
     print(f"Predictions per second: {1/avg_time:.0f}")
     
     if avg_time < 5.0:
-        print(f"✓ Meets requirement: < 5 seconds per prediction")
+        print(f"[OK] Meets requirement: < 5 seconds per prediction")
     else:
         print(f"✗ WARNING: Exceeds 5 second limit!")
 
@@ -472,7 +472,7 @@ if __name__ == "__main__":
     with open('predict.py', 'w') as f:
         f.write(script_content)
     
-    print("✓ Created predict.py")
+    print("[OK] Created predict.py")
     print("\nUsage:")
     print("  python predict.py 5 250 500.00")
 

@@ -657,7 +657,7 @@ def generate_all_visualizations(results):
                 dpi=300, bbox_inches='tight')
     plt.show()
     
-    print("✓ Comprehensive visualization created")
+    print("[OK] Comprehensive visualization created")
 
 def save_final_report(exec_summary, tech_report, pres_outline):
     """
@@ -670,17 +670,17 @@ def save_final_report(exec_summary, tech_report, pres_outline):
     # Save executive summary
     with open('reports/executive_summary.md', 'w') as f:
         f.write(exec_summary)
-    print("✓ Executive summary saved")
+    print("[OK] Executive summary saved")
     
     # Save technical report
     with open('reports/technical_report.md', 'w') as f:
         f.write(tech_report)
-    print("✓ Technical report saved")
+    print("[OK] Technical report saved")
     
     # Save presentation outline
     with open('reports/presentation_outline.md', 'w') as f:
         f.write(pres_outline)
-    print("✓ Presentation outline saved")
+    print("[OK] Presentation outline saved")
     
     print("\nReports saved to reports/ directory")
 

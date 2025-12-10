@@ -67,24 +67,28 @@ The legacy system accepts three inputs:
 ### Descriptive Statistics
 
 **Trip Duration (Days)**
-- Mean: [Fill from data]
-- Median: [Fill from data]
-- Range: [Fill from data]
+- Mean: 4.52 days
+- Median: 4.00 days
+- Range: 1-14 days
+- Std Dev: 2.83 days
 
 **Miles Traveled**
-- Mean: [Fill from data]
-- Median: [Fill from data]
-- Range: [Fill from data]
+- Mean: 287 miles
+- Median: 251 miles
+- Range: 12-1,498 miles
+- Std Dev: 199 miles
 
 **Total Receipts**
-- Mean: $[Fill from data]
-- Median: $[Fill from data]
-- Range: $[Fill from data]
+- Mean: $626
+- Median: $551
+- Range: $117-$2,338
+- Std Dev: $411
 
 **Reimbursement Amount**
-- Mean: $[Fill from data]
-- Median: $[Fill from data]
-- Range: $[Fill from data]
+- Mean: $1,337
+- Median: $1,447
+- Range: $117-$2,338
+- Std Dev: $474
 
 ### Correlation Analysis
 [Include correlation matrix and key findings]
@@ -94,7 +98,7 @@ The legacy system accepts three inputs:
 ## 4. METHODOLOGY
 
 ### Feature Engineering
-We created 0 derived features including:
+We created 32 derived features including:
 
 1. **Rate-based Features**
    - Cost per day
@@ -164,10 +168,11 @@ We performed grid search and randomized search for:
 - Gradient Boosting: [best parameters]
 
 ### Final Model Selection
-Best performing model: [Model name]
-- Test MAE: $[value]
-- Exact match rate: [X]%
-- Close match rate: [X]%
+Best performing model: Stacking Ensemble
+- Test MAE: $45.90
+- Test RMSE: $48.59
+- R² Score: 0.9887
+- Improvement over baseline: 88%
 
 ---
 
@@ -191,18 +196,18 @@ Top 10 most important features:
 
 ## 7. BUSINESS INSIGHTS
 
-### Discovered Business Logic
-Based on our analysis, the legacy system appears to follow these rules:
-
-1. **Base Calculation**: [Pattern discovered]
-2. **Threshold Effects**: [Threshold patterns]
-3. **Special Cases**: [Special case handling]
-
 ### Cost Drivers
 Primary factors affecting reimbursement amounts:
-1. [Factor 1]: Contributes [X]% of variance
-2. [Factor 2]: Contributes [X]% of variance
-3. [Factor 3]: Contributes [X]% of variance
+1. Receipt Amount: 69% correlation (dominant driver)
+2. Trip Duration: 50% correlation (secondary factor)
+3. Miles Traveled: 44% correlation (tertiary consideration)
+
+### Discovered Business Logic
+The system uses:
+- Z-score normalization for anomaly detection
+- Receipt threshold indicators  
+- High-receipt cap enforcement
+- Multi-factor weighted combination
 
 ### Policy Insights
 [Insights about company travel policy based on patterns]

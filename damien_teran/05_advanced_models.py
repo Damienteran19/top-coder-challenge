@@ -473,17 +473,17 @@ def save_advanced_results(results_summary, models, feature_importances):
     # Save results
     df_results = pd.DataFrame(results_summary)
     df_results.to_csv('results/advanced_model_results.csv', index=False)
-    print(f"\n✓ Results saved to results/advanced_model_results.csv")
+    print(f"\n[OK] Results saved to results/advanced_model_results.csv")
     
     # Save models
     for name, model in models.items():
         joblib.dump(model, f'models/saved/{name}.pkl')
-    print(f"✓ Models saved to models/saved/")
+    print(f"[OK] Models saved to models/saved/")
     
     # Save feature importances
     for name, importances in feature_importances.items():
         importances.to_csv(f'results/{name}_feature_importance.csv', index=False)
-    print(f"✓ Feature importances saved")
+    print(f"[OK] Feature importances saved")
 
 # ============================================================================
 # MAIN EXECUTION
@@ -509,7 +509,7 @@ def main():
     X_test = test_df[numeric_cols]
     y_test = test_df['output']
     
-    print(f"✓ Train: {X_train.shape}, Test: {X_test.shape}")
+    print(f"[OK] Train: {X_train.shape}, Test: {X_test.shape}")
     
     # Train and compare models
     results_summary, models, feature_importances = compare_advanced_models(

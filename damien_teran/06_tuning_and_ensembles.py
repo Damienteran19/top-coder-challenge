@@ -234,7 +234,7 @@ def create_voting_ensemble(tuned_models, X_train, y_train):
     print("Training voting ensemble...")
     voting.fit(X_train, y_train)
     
-    print("✓ Voting ensemble trained")
+    print("[OK] Voting ensemble trained")
     
     return voting
 
@@ -267,7 +267,7 @@ def create_stacking_ensemble(tuned_models, X_train, y_train):
     print("Training stacking ensemble...")
     stacking.fit(X_train, y_train)
     
-    print("✓ Stacking ensemble trained")
+    print("[OK] Stacking ensemble trained")
     
     return stacking
 
@@ -434,23 +434,23 @@ def save_final_models(tuned_models, ensembles, results_summary, weights=None):
     # Save tuned models
     for name, model in tuned_models.items():
         joblib.dump(model, f'models/saved/tuned_{name}.pkl')
-    print(f"✓ Tuned models saved")
+    print(f"[OK] Tuned models saved")
     
     # Save ensembles
     for name, model in ensembles.items():
         if name != 'weighted_average':  # Can't pickle functions easily
             joblib.dump(model, f'models/saved/ensemble_{name}.pkl')
-    print(f"✓ Ensemble models saved")
+    print(f"[OK] Ensemble models saved")
     
     # Save weights if available
     if weights:
         joblib.dump(weights, 'models/saved/ensemble_weights.pkl')
-        print(f"✓ Ensemble weights saved")
+        print(f"[OK] Ensemble weights saved")
     
     # Save results
     df_results = pd.DataFrame(results_summary)
     df_results.to_csv('results/final_model_results.csv', index=False)
-    print(f"✓ Results saved to results/final_model_results.csv")
+    print(f"[OK] Results saved to results/final_model_results.csv")
     
     # Identify and save best model
     best_idx = df_results['test_mae'].idxmin()
@@ -463,7 +463,7 @@ def save_final_models(tuned_models, ensembles, results_summary, weights=None):
         f.write(f"\nFull Results:\n")
         f.write(df_results.to_string())
     
-    print(f"✓ Best model info saved")
+    print(f"[OK] Best model info saved")
     print(f"\nBest Model: {best_model_name} (MAE: ${best_mae:.2f})")
 
 # ============================================================================
@@ -489,7 +489,7 @@ def main():
     X_test = test_df[numeric_cols]
     y_test = test_df['output']
     
-    print(f"✓ Train: {X_train.shape}, Test: {X_test.shape}")
+    print(f"[OK] Train: {X_train.shape}, Test: {X_test.shape}")
     
     # Hyperparameter tuning
     tuned_models = {}

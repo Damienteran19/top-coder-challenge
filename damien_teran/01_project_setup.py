@@ -30,9 +30,8 @@ print(df.columns.tolist())
 # ------------------------------------------------------------------
 # Expected columns (based on your sample)
 # ------------------------------------------------------------------
-# From your snippet: input_trip_duration_days, input_miles_traveled
+# From my snippet: input_trip_duration_days, input_miles_traveled
 # Target is likely: output_reimbursement or just reimbursement
-# Let's find the reimbursement column
 target_candidates = [col for col in df.columns if "reimb" in col.lower() or "output" in col]
 print(f"Possible target columns: {target_candidates}")
 

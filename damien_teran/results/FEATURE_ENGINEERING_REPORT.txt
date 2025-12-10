@@ -1,0 +1,33 @@
+
+FEATURE ENGINEERING SUMMARY (FIXED - NO TARGET LEAKAGE)
+========================================================
+
+Total Features: 56
+Original: 4
+Engineered: 52
+
+Top 3 Features (RF Importance):
+1. weighted_estimate_v1 (0.6858)
+2. weighted_estimate_v2 (0.0892)
+3. est_total_simple (0.0770)
+
+Key Engineered Features:
+[OK] Rate features (per day, per mile)
+[OK] Standard estimates (IRS rate, per diem)
+[OK] Threshold indicators (high receipts, long trips)
+[OK] Interaction terms (miles × days, receipts × duration)
+[OK] Polynomial features (squared, sqrt, log)
+[OK] Z-scores and anomaly detection on INPUTS only
+
+IMPORTANT: All features use ONLY the 3 input variables.
+NO features derived from target (output/reimbursement).
+
+This ensures the model can make predictions on new data!
+
+Next Steps:
+- Run 04_baseline_models.py
+- Run 05_advanced_models.py
+- Run 06_tuning_and_ensembles.py
+- Session 07 will now work!
+
+Generated: 2025-12-05 21:37

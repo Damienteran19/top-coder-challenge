@@ -376,12 +376,12 @@ def save_baseline_results(results_summary, models):
     # Save results summary
     df_results = pd.DataFrame(results_summary)
     df_results.to_csv('results/baseline_model_results.csv', index=False)
-    print(f"\n✓ Results saved to results/baseline_model_results.csv")
+    print(f"\n[OK] Results saved to results/baseline_model_results.csv")
     
     # Save best models
     joblib.dump(models['ridge'], 'models/saved/baseline_ridge.pkl')
     joblib.dump(models['lasso'], 'models/saved/baseline_lasso.pkl')
-    print(f"✓ Models saved to models/saved/")
+    print(f"[OK] Models saved to models/saved/")
 
 # ============================================================================
 # MAIN EXECUTION
@@ -404,7 +404,7 @@ def main():
     X_test = test_df.drop('output', axis=1)
     y_test = test_df['output']
     
-    print(f"✓ Train: {X_train.shape}, Test: {X_test.shape}")
+    print(f"[OK] Train: {X_train.shape}, Test: {X_test.shape}")
     
     # Compare baseline models
     results_summary, models = compare_baseline_models(X_train, X_test, y_train, y_test)
